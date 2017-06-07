@@ -1,12 +1,16 @@
 {% set samba = salt['grains.filter_by']({
     'Debian': {
         'server': 'samba',
-        'client': 'samba-client',
+        'client': salt['grains.filter_by']({
+            'xenial': 'smb-clinet',
+            'default': 'samba-client',
+        }, grain='oscodename'),
         'service': salt['grains.filter_by']({
 	    'lenny': 'samba',
 	    'squeeze': 'samba',
 	    'wheezy': 'samba',
 	    'jessie': 'smbd',
+            'xenial': 'smbd',
 	    'default': 'smbd',
 	}, grain='oscodename'),
         'config': '/etc/samba/smb.conf',
