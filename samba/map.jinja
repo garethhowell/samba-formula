@@ -2,7 +2,7 @@
     'Debian': {
         'server': 'samba',
         'client': salt['grains.filter_by']({
-            'xenial': 'smb-clinet',
+            'xenial': 'smb-client',
             'default': 'samba-client',
         }, grain='oscodename'),
         'service': salt['grains.filter_by']({
