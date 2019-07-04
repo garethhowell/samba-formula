@@ -1,10 +1,8 @@
-{% from "samba/map.jinja" import samba with context %}
 
-samba:
-  pkg.installed:
-    - name: {{ samba.server }}
-  service.running:
-    - name: {{ samba.service }}
-    - enable: True
-    - require:
-      - pkg: samba
+include:
+  - samba.server
+  - samba.config
+  - samba.client
+  - samba.users
+  # samba.winbind
+  # samba.winbind-ad
